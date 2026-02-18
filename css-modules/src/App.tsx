@@ -119,7 +119,6 @@ function App() {
             footer={card.footer}
             size={card.size}
             color={card.color}
-            onStateChange={() => {}}
           />
         ))}
       </div>

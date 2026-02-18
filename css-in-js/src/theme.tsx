@@ -12,7 +12,6 @@ const theme = createTheme({
       main: "#9c27b0",
     },
   },
-  spacing: 4,
 });
 
 export const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {

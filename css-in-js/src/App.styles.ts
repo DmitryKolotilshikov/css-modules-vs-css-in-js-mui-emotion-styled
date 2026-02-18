@@ -69,6 +69,12 @@ export const CardsGrid = styled('div')`
   gap: 20px;
   padding-bottom: 40px;
 
+  .card, .card:focus {
+    outline: 2px solid lightsalmon;
+    outline-offset: 2px;
+    border-radius: 8px;
+  }
+
   @media (max-width: 768px) {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 15px;

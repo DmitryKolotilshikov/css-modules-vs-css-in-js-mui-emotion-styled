@@ -11,7 +11,6 @@ export interface CardProps {
   size?: 'small' | 'medium' | 'large';
   color?: 'default' | 'primary' | 'success' | 'danger' | 'warning';
   disabled?: boolean;
-  onStateChange?: (cardId: number, state: CardState) => void;
   children?: ReactNode;
 }
 
@@ -40,7 +39,6 @@ export const CardComponent = memo<CardProps>(
     size = 'medium',
     color = 'default',
     disabled = false,
-    onStateChange,
     children,
   }) => {
     const [cardStateInternal, setCardStateInternal] = useState<CardState>(cardState);
@@ -57,7 +55,6 @@ export const CardComponent = memo<CardProps>(
           isActive: !prev.isActive,
           isLoading: false,
         };
-        onStateChange?.(id, newState);
         return newState;
       });
     };
@@ -92,7 +89,7 @@ export const CardComponent = memo<CardProps>(
       }));
     };
 
-    const classNames = [
+    const cardClassNames = [
       styles.card,
       styles[`size${size.charAt(0).toUpperCase() + size.slice(1)}`],
       styles[`color${color.charAt(0).toUpperCase() + color.slice(1)}`],
@@ -106,9 +103,16 @@ export const CardComponent = memo<CardProps>(
       .filter(Boolean)
       .join(' ');
 
+    const footerClassNames = [
+      styles.footer,
+      cardStateInternal.isActive && styles.footerActive,
+    ]
+      .filter(Boolean)
+      .join(' ');
+
     return (
       <div
-        className={classNames}
+        className={cardClassNames}
         onClick={handleClick}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
@@ -119,6 +123,7 @@ export const CardComponent = memo<CardProps>(
         aria-pressed={cardStateInternal.isActive}
         aria-disabled={disabled}
         data-card-id={id}
+        data-card
       >
         <div className={styles.header}>
           <h3 className={styles.title}>{title}</h3>
@@ -129,9 +134,9 @@ export const CardComponent = memo<CardProps>(
 
         {children}
 
-        {footer && <div className={styles.footer}>{footer}</div>}
+        {footer && <footer className={footerClassNames}>{footer}</footer>}
 
-        <div style={{ marginTop: '8px', fontSize: '10px', opacity: 0.6 }}>
+        <div className={styles.stateIndicators}>
           {cardStateInternal.isLoading && '⏳'}
           {cardStateInternal.isActive && '✓'}
           {cardStateInternal.isHighlighted && '⭐'}

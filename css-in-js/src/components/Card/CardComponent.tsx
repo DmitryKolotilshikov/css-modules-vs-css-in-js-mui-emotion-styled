@@ -11,6 +11,7 @@ export interface CardProps {
   size?: 'small' | 'medium' | 'large';
   color?: 'default' | 'primary' | 'success' | 'danger' | 'warning';
   disabled?: boolean;
+  className?: string;
   children?: ReactNode;
 }
 
@@ -39,6 +40,7 @@ export const CardComponent = memo<CardProps>(
     size = 'medium',
     color = 'default',
     disabled = false,
+    className = "card",
     children,
   }) => {
     const [cardStateInternal, setCardStateInternal] = useState<CardState>(cardState);
@@ -101,6 +103,7 @@ export const CardComponent = memo<CardProps>(
         aria-pressed={cardStateInternal.isActive}
         aria-disabled={disabled}
         data-card-id={id}
+        className={className}
 
         $sizeVariant={size}
         $colorVariant={color}
@@ -120,7 +123,7 @@ export const CardComponent = memo<CardProps>(
 
         {children}
 
-        {footer && <S.CardFooter>{footer}</S.CardFooter>}
+        {footer && <S.CardFooter $isActive={cardStateInternal.isActive}>{footer}</S.CardFooter>}
 
         <S.StateIndicators>
           {cardStateInternal.isLoading && '⏳'}

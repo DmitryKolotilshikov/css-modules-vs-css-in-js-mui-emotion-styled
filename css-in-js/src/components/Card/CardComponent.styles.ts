@@ -102,7 +102,7 @@ export const CardContainer = styled("div")<CardContainerProps>`
   ${({ $isFocused }) =>
     $isFocused &&
     `
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    box-shadow: 0 0 15px 8px rgba(0, 123, 255, 0.25);
   `}
 
   ${({ $isLoading }) =>
@@ -195,12 +195,14 @@ export const CardContent = styled("div")`
   line-height: 1.5;
 `;
 
-export const CardFooter = styled("div")`
+export const CardFooter = styled("footer")<{$isActive: boolean}>`
   margin-top: 8px;
   padding-top: 8px;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   font-size: 12px;
-  color: rgba(0, 0, 0, 0.6);
+  color: ${({ $isActive }) => $isActive ? "#fff" : "#00000099"};
+  border: ${({ $isActive }) => $isActive && "2px solid #fff"};
+  border-radius: ${({ $isActive }) => $isActive && "5px"};
 `;
 
 export const StateIndicators = styled("div")`
