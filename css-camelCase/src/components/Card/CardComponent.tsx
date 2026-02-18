@@ -1,4 +1,4 @@
-import { memo, useEffect, useState, type ReactNode, CSSProperties } from 'react';
+import { memo, useEffect, useState, type ReactNode, type CSSProperties } from 'react';
 import { useStyles } from './CardComponent.styles';
 
 export interface CardProps {

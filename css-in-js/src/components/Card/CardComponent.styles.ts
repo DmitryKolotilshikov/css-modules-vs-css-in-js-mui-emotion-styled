@@ -1,4 +1,4 @@
-import { styled, css } from "@mui/material";
+import { styled, css, type Theme } from "@mui/material";
 
 export interface CardContainerProps {
   $sizeVariant?: "small" | "medium" | "large";
@@ -31,25 +31,25 @@ const getSizeStyles = (size?: string) => {
   }
 };
 
-const getColorStyles = (color?: string) => {
+const getColorStyles = (theme: Theme, color?: string) => {
   switch (color) {
     case "primary":
       return `
         background-color: #007bff;
         border-color: #0056b3;
-        color: #ffffff;
+        color: ${theme.palette.common.white};
       `;
     case "success":
       return `
         background-color: #28a745;
         border-color: #1e7e34;
-        color: #ffffff;
+        color: ${theme.palette.common.white};
       `;
     case "danger":
       return `
         background-color: #dc3545;
         border-color: #bd2130;
-        color: #ffffff;
+        color: ${theme.palette.common.white};
       `;
     case "warning":
       return `
@@ -59,15 +59,15 @@ const getColorStyles = (color?: string) => {
       `;
     default:
       return `
-        background-color: #ffffff;
+        background-color: ${theme.palette.common.white};
         border-color: #e0e0e0;
-        color: #333333;
+        color: ${theme.palette.common.black};
       `;
   }
 };
 
 export const CardContainer = styled("div")<CardContainerProps>`
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.palette.common.white};
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 16px;
@@ -77,7 +77,7 @@ export const CardContainer = styled("div")<CardContainerProps>`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   ${({ $sizeVariant }) => getSizeStyles($sizeVariant)}
-  ${({ $colorVariant }) => getColorStyles($colorVariant)}
+  ${({ theme, $colorVariant }) => getColorStyles(theme, $colorVariant)}
 
   &:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -89,12 +89,12 @@ export const CardContainer = styled("div")<CardContainerProps>`
     outline-offset: 2px;
   }
 
-  ${({ $isActive }) =>
+  ${({ theme, $isActive }) =>
     $isActive &&
     css`
       background-color: #007bff;
       border-color: #0056b3;
-      color: #ffffff;
+      color: ${theme.palette.common.white};
       box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
       transform: scale(1.02);
     `}
@@ -149,14 +149,15 @@ export const CardContainer = styled("div")<CardContainerProps>`
       background-color: #fff3cd;
       border-color: #ffc107;
       box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.3);
+      color: #000;
     `}
 
-  ${({ $isDisabled }) =>
+  ${({ theme, $isDisabled }) =>
     $isDisabled &&
     css`
       opacity: 0.6;
       cursor: not-allowed;
-      background-color: #f5f5f5;
+      background-color: ${theme.palette.primary.light};
       border-color: #d0d0d0;
       color: #999999;
       pointer-events: none;
@@ -200,7 +201,7 @@ export const CardFooter = styled("footer")<{$isActive: boolean}>`
   padding-top: 8px;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   font-size: 12px;
-  color: ${({ $isActive }) => $isActive ? "#fff" : "#00000099"};
+  color: ${({ theme, $isActive }) => $isActive ? theme.palette.common.white : "#00000099"};
   border: ${({ $isActive }) => $isActive && "2px solid #fff"};
   border-radius: ${({ $isActive }) => $isActive && "5px"};
 `;

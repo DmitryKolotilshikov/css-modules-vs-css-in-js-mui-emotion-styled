@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { type CardState, CardComponent } from './components/Card';
 import { Button } from '@mui/material';
 import './App.css';
@@ -84,8 +84,13 @@ function App() {
      }));
   };
 
+  // как сетать css переменную через JS
+  useLayoutEffect(() => {
+    // document.documentElement.style.setProperty('--common-white', '#a955ca');
+  }, [])
+
   return (
-    <div className="app-container">
+    <div className="app-container" data-theme="light">
       <div className="control-panel">
         <h1>Card Component Demo</h1>
         <div className="control-buttons">

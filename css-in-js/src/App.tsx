@@ -84,6 +84,12 @@ function App() {
   return (
     <S.AppContainer>
       <S.ControlPanel>
+        <S.ImagesContainer>
+          <S.WolfImg />
+          <S.RabbitImg />
+          <S.CatImg />
+        </S.ImagesContainer>
+
         <S.ControlTitle>Card Component Demo</S.ControlTitle>
         <S.ControlButtons>
           <Button onClick={toggleAllActive} variant="contained">

@@ -3,17 +3,28 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* Common */
+  --common-white: #fff;
+  --common-black: #000;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Primary */
+  --primary-main: #1976d2;
+  --primary-dark: #242c31;
+  --primary-light: #f3f3f3;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
+}
+
+[data-theme="dark"] {
+  /* Common */
+  --common-white: #000000;
+  --common-black: #f2f2f2;
+
+  /* Primary */
+  --primary-main: #1976d2;
+  --primary-dark: #e2e9ed;
+  --primary-light: #2d2d2d;
 }

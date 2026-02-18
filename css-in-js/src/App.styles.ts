@@ -6,7 +6,7 @@ export const AppContainer = styled('div')`
   padding: 20px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  background-color: #f5f5f5;
+  background-color: ${({ theme }) => theme.palette.primary.light};
   min-height: 100vh;
 
   @media (max-width: 768px) {
@@ -19,7 +19,7 @@ export const AppContainer = styled('div')`
 `;
 
 export const ControlPanel = styled('div')`
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.palette.common.white};
   border-radius: 12px;
   padding: 30px;
   margin-bottom: 30px;
@@ -36,10 +36,36 @@ export const ControlPanel = styled('div')`
   }
 `;
 
+export const ImagesContainer = styled('div')`
+  background-color: ${({ theme }) => theme.palette.common.white};
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 10px;
+`;
+
+const Image = styled('image')`
+  width: 100%;
+  max-width: 250px;
+  height: 300px;
+`;
+
+export const WolfImg = styled(Image)`
+  background: url(${({ theme }) => theme.images.wolf}) center/cover no-repeat;
+`;
+export const RabbitImg = styled(Image)`
+  background: url(${({ theme }) => theme.images.rabbit}) center/cover no-repeat;
+`;
+export const CatImg = styled(Image)`
+  background: url(${({ theme }) => theme.images.cat}) center/cover no-repeat;
+`;
+
 export const ControlTitle = styled('h1')`
   margin: 0 0 20px 0;
   font-size: 28px;
-  color: #333333;
+  color: ${({ theme }) => theme.palette.primary.dark};
   font-weight: 700;
 
   @media (max-width: 768px) {
