@@ -45,7 +45,7 @@ const darkTheme = createTheme({
   }
 });
 
-const isLight = true;
+const isLight = false;
 
 export const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
   return (

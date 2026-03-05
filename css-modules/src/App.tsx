@@ -86,7 +86,7 @@ function App() {
 
   // как сетать css переменную через JS
   useLayoutEffect(() => {
-    // document.documentElement.style.setProperty('--common-white', '#a955ca');
+    document.documentElement.style.setProperty('--common-white', '#a955ca');
   }, [])
 
   return (
